@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/sat-solver/META"
+  "_build/install/default/lib/sat-solver/dune-package"
+  "_build/install/default/lib/sat-solver/opam"
+]
+bin: [
+  "_build/install/default/bin/sat-solver"
+]

@@ -1,0 +1,2 @@
+(library
+ (name sat_solver_lib))

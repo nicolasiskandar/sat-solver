@@ -1,0 +1,4 @@
+(executable
+ (public_name sat-solver)
+ (name main)
+ (libraries sat_solver_lib))
