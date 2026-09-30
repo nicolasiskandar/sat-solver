@@ -1,7 +1,19 @@
+open Sat_solver_lib
+
+let unsat_formula n =
+  List.concat_map
+    (fun i -> [ [i; i+1]; [-i; -(i+1)]; [i; -(i+1)]; [-i; i+1] ])
+    (List.init (n/2) (fun k -> 2*k + 1))
+
 let () =
-  let f = [ [1; -2]; [2; 3] ] in
-  if Sat_solver_lib.Cnf.has_empty_clause f then
-    print_endline "formula trivially unsat"
-  else
-    print_endline "formula has no empty clause";
-  Printf.printf "%d\n" (Sat_solver_lib.Cnf.num_clauses f)
+  List.iter
+    (fun n ->
+      let f = unsat_formula n in
+      let start = Sys.time () in
+      let result = Bruteforce.solve n f in
+      let elapsed = Sys.time () -. start in
+      Printf.printf "n=%2d  result=%s  time=%.4fs\n"
+        n
+        (match result with Bruteforce.Sat _ -> "SAT" | Unsat -> "UNSAT")
+        elapsed)
+    [ 4; 8; 12; 16; 20; 24 ]

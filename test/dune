@@ -1,3 +1,4 @@
 (test
  (name test_sat_solver)
- (libraries sat_solver_lib qcheck))
+ (libraries sat_solver_lib qcheck)
+ (deps (source_tree fixtures)))

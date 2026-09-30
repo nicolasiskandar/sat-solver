@@ -2,7 +2,7 @@ type value = True | False | Unassigned
 
 type t = { table : value array }
 
-let create n { table = Array.make (n + 1) Unassigned }
+let create n = { table = Array.make (n + 1) Unassigned }
 
 let value_of t v = t.table.(v)
 
