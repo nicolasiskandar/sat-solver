@@ -1,0 +1,1 @@
+val analyze : Trail.t -> Cnf.clause -> Cnf.clause * int

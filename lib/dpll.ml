@@ -59,12 +59,7 @@ let rec search (assign : int list) (f : Cnf.formula) (n : int)
           | Some result -> Some result
           | None -> search ((-v) :: assign) f n))
 
-let model_satisfies (assign : int list) (f : Cnf.formula) : bool =
-  List.for_all
-    (fun clause -> List.exists (fun lit -> List.mem lit assign) clause)
-    f
-
 let solve (n : int) (f : Cnf.formula) : result =
   match search [] (restrict n f) n with
-  | Some assign when model_satisfies assign f -> Sat assign
+  | Some assign when Cnf.satisfies assign f -> Sat assign
   | _ -> Unsat
