@@ -20,7 +20,7 @@ let () =
       let start = Sys.time () in
       let result = Cdcl.solve n f in
       let elapsed = Sys.time () -. start in
-      Printf.printf "n=%2d  result=%s  time=%.4fs\n"
+      Printf.printf "n=%2d  result=%s  time=%.6fs\n"
         n
         (match result with Cdcl.Sat _ -> "SAT" | Cdcl.Unsat -> "UNSAT")
         elapsed)
@@ -30,8 +30,8 @@ let () =
   let start = Sys.time () in
   match Cdcl.solve n f with
   | Cdcl.Sat model ->
-    Printf.printf "\nn=%2d  result=SAT  time=%.4fs\nmodel=%s\nverified=%b\n"
+    Printf.printf "\nn=%2d  result=SAT  time=%.6fs\nmodel=%s\nverified=%b\n"
       n (Sys.time () -. start)
       (String.concat " " (List.map string_of_int model))
       (Cnf.satisfies model f)
-  | Cdcl.Unsat -> Printf.printf "\nn=%2d  result=UNSAT  time=%.4fs\n" n (Sys.time () -. start)
+  | Cdcl.Unsat -> Printf.printf "\nn=%2d  result=UNSAT  time=%.6fs\n" n (Sys.time () -. start)
